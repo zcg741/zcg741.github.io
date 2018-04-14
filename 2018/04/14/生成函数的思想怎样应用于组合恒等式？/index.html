@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>生成函数的思想怎样应用于组合恒等式？ | 张晨刚</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="生成函数在证明许多组合恒等式的过程中都十分有用哦 ~不过，我不是专门做组合的，所以这里我就抛砖迎玉讲个简单的吧 ~ 我们以 Chu-Vandermonde 恒等式为例。二项式展开（Binomial theorem, Binomial expansion）告诉我们   上面等式的左边就相当于右边  或  前面序列的生成函数（generating function）。把他俩乘在一起，就得到了  然后，">
+<meta name="keywords" content="张晨刚">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成函数的思想怎样应用于组合恒等式？">
+<meta property="og:url" content="http://blog.zhangchg.cn/2018/04/14/生成函数的思想怎样应用于组合恒等式？/index.html">
+<meta property="og:site_name" content="张晨刚">
+<meta property="og:description" content="生成函数在证明许多组合恒等式的过程中都十分有用哦 ~不过，我不是专门做组合的，所以这里我就抛砖迎玉讲个简单的吧 ~ 我们以 Chu-Vandermonde 恒等式为例。二项式展开（Binomial theorem, Binomial expansion）告诉我们   上面等式的左边就相当于右边  或  前面序列的生成函数（generating function）。把他俩乘在一起，就得到了  然后，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Cleft%281-x%5Cright%29%5E%7B-%5Calpha%7D%3D%5Csum_%7Bm%3D0%7D%5E%7B%5Cinfty%7D%5Cfrac%7B%5Cleft%28%5Calpha%5Cright%29_m%7D%7Bm%21%7Dx%5Em">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Cleft%281-x%5Cright%29%5E%7B-%5Cbeta%7D%3D%5Csum_%7Bn%3D0%7D%5E%7B%5Cinfty%7D%5Cfrac%7B%5Cleft%28%5Cbeta%5Cright%29_n%7D%7Bn%21%7Dx%5En">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=x%5Em">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=x%5En">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Csum_%7Bm%3D0%7D%5E%7B%5Cinfty%7D%5Csum_%7Bn%3D0%7D%5E%7B%5Cinfty%7D%5Cfrac%7B%5Cleft%28%5Calpha%5Cright%29_m%7D%7Bm%21%7D%5Cfrac%7B%5Cleft%28%5Cbeta%5Cright%29_n%7D%7Bn%21%7Dx%5E%7Bm%2Bn%7D+%3D%5Cleft%281-x%5Cright%29%5E%7B-%5Calpha%7D%5Cleft%281-x%5Cright%29%5E%7B-%5Cbeta%7D%3D%5Cleft%281-x%5Cright%29%5E%7B-%5Calpha-%5Cbeta%7D">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Cleft%281-x%5Cright%29%5E%7B-%5Calpha-%5Cbeta%7D">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Csum_%7Bm%3D0%7D%5E%7B%5Cinfty%7D%5Csum_%7Bn%3D0%7D%5E%7B%5Cinfty%7D%5Cfrac%7B%5Cleft%28%5Calpha%5Cright%29_m%7D%7Bm%21%7D%5Cfrac%7B%5Cleft%28%5Cbeta%5Cright%29_n%7D%7Bn%21%7Dx%5E%7Bm%2Bn%7D+%3D%5Csum_%7Bm%3D0%7D%5E%7B%5Cinfty%7D%5Cfrac%7B%5Cleft%28%5Calpha%2B%5Cbeta%5Cright%29_m%7D%7Bm%21%7Dx%5E%7Bm%7D">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Csum_%7Bm%3D0%7D%5E%7B%5Cinfty%7D%5Cleft%28%5Csum_%7Bn%3D0%7D%5E%7Bm%7D%5Cfrac%7Bm%21%7D%7B%5Cleft%28m-n%5Cright%29%21n%21%7D+%5Cleft%28%5Calpha%5Cright%29_%7Bm-n%7D%5Cleft%28%5Cbeta%5Cright%29_n%5Cright%29%5Cfrac%7Bx%5E%7Bm%7D%7D%7Bm%21%7D+%3D%5Csum_%7Bm%3D0%7D%5E%7B%5Cinfty%7D%5Cfrac%7B%5Cleft%28%5Calpha%2B%5Cbeta%5Cright%29_m%7D%7Bm%21%7Dx%5E%7Bm%7D">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Csum_%7Bn%3D0%7D%5E%7Bm%7D%5Cfrac%7Bm%21%7D%7B%5Cleft%28m-n%5Cright%29%21n%21%7D+%5Cleft%28%5Calpha%5Cright%29_%7Bm-n%7D%5Cleft%28%5Cbeta%5Cright%29_n+%3D%5Cleft%28%5Calpha%2B%5Cbeta%5Cright%29_m">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Csum_%7Bn%3D0%7D%5E%7Bm%7D%5Cbinom%7Bm%7D%7Bn%7D+%5Cleft%28%5Calpha%5Cright%29_%7Bm-n%7D%5Cleft%28%5Cbeta%5Cright%29_n+%3D%5Cleft%28%5Calpha%2B%5Cbeta%5Cright%29_m">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Cbinom%7B-%5Clambda%7D%7Bn%7D%3D%5Cleft%28-1%5Cright%29%5En%5Cfrac%7B%5Cleft%28%5Clambda%5Cright%29_n%7D%7Bn%21%7D">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Csum_%7Bn%3D0%7D%5Em%5Cbinom%7B%5Calpha%7D%7Bm-n%7D%5Cbinom%7B%5Cbeta%7D%7Bn%7D%3D%5Cbinom%7B%5Calpha%2B%5Cbeta%7D%7Bm%7D">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Cleft%281-x%5Cright%29%5E%7B-%5Calpha%7D%5Cleft%281-x%5Cright%29%5E%7B-%5Cbeta%7D%3D%5Cleft%281-x%5Cright%29%5E%7B-%5Calpha-%5Cbeta%7D">
+<meta property="og:updated_time" content="2018-04-14T07:58:41.406Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="生成函数的思想怎样应用于组合恒等式？">
+<meta name="twitter:description" content="生成函数在证明许多组合恒等式的过程中都十分有用哦 ~不过，我不是专门做组合的，所以这里我就抛砖迎玉讲个简单的吧 ~ 我们以 Chu-Vandermonde 恒等式为例。二项式展开（Binomial theorem, Binomial expansion）告诉我们   上面等式的左边就相当于右边  或  前面序列的生成函数（generating function）。把他俩乘在一起，就得到了  然后，">
+<meta name="twitter:image" content="http://www.zhihu.com/equation?tex=%5Cleft%281-x%5Cright%29%5E%7B-%5Calpha%7D%3D%5Csum_%7Bm%3D0%7D%5E%7B%5Cinfty%7D%5Cfrac%7B%5Cleft%28%5Calpha%5Cright%29_m%7D%7Bm%21%7Dx%5Em">
+  
+    <link rel="alternate" href="/atom.xml" title="张晨刚" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">张晨刚</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">张晨刚的个人博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhangchg.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-生成函数的思想怎样应用于组合恒等式？" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/14/生成函数的思想怎样应用于组合恒等式？/" class="article-date">
+  <time datetime="2018-04-14T02:02:36.000Z" itemprop="datePublished">2018-04-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      生成函数的思想怎样应用于组合恒等式？
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>生成函数在证明许多组合恒等式的过程中都十分有用哦 ~<strong>不过，我不是专门做组合的，所以这里我就抛砖迎玉讲个简单的吧 ~</strong></p>
+<p><strong>我们以 Chu-Vandermonde 恒等式为例。</strong>二项式展开（Binomial theorem, Binomial expansion）告诉我们</p>
+<p><img src="//www.zhihu.com/equation?tex=%5Cleft%281-x%5Cright%29%5E%7B-%5Calpha%7D%3D%5Csum_%7Bm%3D0%7D%5E%7B%5Cinfty%7D%5Cfrac%7B%5Cleft%28%5Calpha%5Cright%29_m%7D%7Bm%21%7Dx%5Em" alt="\left(1-x\right)^{-\alpha}=\sum_{m=0}^{\infty}\frac{\left(\alpha\right)_m}{m!}x^m"></p>
+<p><img src="//www.zhihu.com/equation?tex=%5Cleft%281-x%5Cright%29%5E%7B-%5Cbeta%7D%3D%5Csum_%7Bn%3D0%7D%5E%7B%5Cinfty%7D%5Cfrac%7B%5Cleft%28%5Cbeta%5Cright%29_n%7D%7Bn%21%7Dx%5En" alt="\left(1-x\right)^{-\beta}=\sum_{n=0}^{\infty}\frac{\left(\beta\right)_n}{n!}x^n"></p>
+<p>上面等式的<strong>左边</strong>就相当于右边 <img src="//www.zhihu.com/equation?tex=x%5Em" alt="x^m"> 或 <img src="//www.zhihu.com/equation?tex=x%5En" alt="x^n"> 前面<strong>序列</strong>的<strong>生成函数</strong>（generating function）。把他俩乘在一起，就得到了</p>
+<p><img src="//www.zhihu.com/equation?tex=%5Csum_%7Bm%3D0%7D%5E%7B%5Cinfty%7D%5Csum_%7Bn%3D0%7D%5E%7B%5Cinfty%7D%5Cfrac%7B%5Cleft%28%5Calpha%5Cright%29_m%7D%7Bm%21%7D%5Cfrac%7B%5Cleft%28%5Cbeta%5Cright%29_n%7D%7Bn%21%7Dx%5E%7Bm%2Bn%7D+%3D%5Cleft%281-x%5Cright%29%5E%7B-%5Calpha%7D%5Cleft%281-x%5Cright%29%5E%7B-%5Cbeta%7D%3D%5Cleft%281-x%5Cright%29%5E%7B-%5Calpha-%5Cbeta%7D" alt="\sum_{m=0}^{\infty}\sum_{n=0}^{\infty}\frac{\left(\alpha\right)_m}{m!}\frac{\left(\beta\right)_n}{n!}x^{m+n} =\left(1-x\right)^{-\alpha}\left(1-x\right)^{-\beta}=\left(1-x\right)^{-\alpha-\beta}"></p>
+<p>然后，利用对 <img src="//www.zhihu.com/equation?tex=%5Cleft%281-x%5Cright%29%5E%7B-%5Calpha-%5Cbeta%7D" alt="\left(1-x\right)^{-\alpha-\beta}"> 使用二项式定理进行展开，便得到了</p>
+<p><img src="//www.zhihu.com/equation?tex=%5Csum_%7Bm%3D0%7D%5E%7B%5Cinfty%7D%5Csum_%7Bn%3D0%7D%5E%7B%5Cinfty%7D%5Cfrac%7B%5Cleft%28%5Calpha%5Cright%29_m%7D%7Bm%21%7D%5Cfrac%7B%5Cleft%28%5Cbeta%5Cright%29_n%7D%7Bn%21%7Dx%5E%7Bm%2Bn%7D+%3D%5Csum_%7Bm%3D0%7D%5E%7B%5Cinfty%7D%5Cfrac%7B%5Cleft%28%5Calpha%2B%5Cbeta%5Cright%29_m%7D%7Bm%21%7Dx%5E%7Bm%7D" alt="\sum_{m=0}^{\infty}\sum_{n=0}^{\infty}\frac{\left(\alpha\right)_m}{m!}\frac{\left(\beta\right)_n}{n!}x^{m+n} =\sum_{m=0}^{\infty}\frac{\left(\alpha+\beta\right)_m}{m!}x^{m}"></p>
+<p>左边的二重级数可以进行重排，从而得到</p>
+<p><img src="//www.zhihu.com/equation?tex=%5Csum_%7Bm%3D0%7D%5E%7B%5Cinfty%7D%5Cleft%28%5Csum_%7Bn%3D0%7D%5E%7Bm%7D%5Cfrac%7Bm%21%7D%7B%5Cleft%28m-n%5Cright%29%21n%21%7D+%5Cleft%28%5Calpha%5Cright%29_%7Bm-n%7D%5Cleft%28%5Cbeta%5Cright%29_n%5Cright%29%5Cfrac%7Bx%5E%7Bm%7D%7D%7Bm%21%7D+%3D%5Csum_%7Bm%3D0%7D%5E%7B%5Cinfty%7D%5Cfrac%7B%5Cleft%28%5Calpha%2B%5Cbeta%5Cright%29_m%7D%7Bm%21%7Dx%5E%7Bm%7D" alt="\sum_{m=0}^{\infty}\left(\sum_{n=0}^{m}\frac{m!}{\left(m-n\right)!n!} \left(\alpha\right)_{m-n}\left(\beta\right)_n\right)\frac{x^{m}}{m!} =\sum_{m=0}^{\infty}\frac{\left(\alpha+\beta\right)_m}{m!}x^{m}"></p>
+<p>比较系数以后，我们便得到了：</p>
+<p><img src="//www.zhihu.com/equation?tex=%5Csum_%7Bn%3D0%7D%5E%7Bm%7D%5Cfrac%7Bm%21%7D%7B%5Cleft%28m-n%5Cright%29%21n%21%7D+%5Cleft%28%5Calpha%5Cright%29_%7Bm-n%7D%5Cleft%28%5Cbeta%5Cright%29_n+%3D%5Cleft%28%5Calpha%2B%5Cbeta%5Cright%29_m" alt="\sum_{n=0}^{m}\frac{m!}{\left(m-n\right)!n!} \left(\alpha\right)_{m-n}\left(\beta\right)_n =\left(\alpha+\beta\right)_m"></p>
+<p>用组合数来表示的话就有</p>
+<p><img src="//www.zhihu.com/equation?tex=%5Csum_%7Bn%3D0%7D%5E%7Bm%7D%5Cbinom%7Bm%7D%7Bn%7D+%5Cleft%28%5Calpha%5Cright%29_%7Bm-n%7D%5Cleft%28%5Cbeta%5Cright%29_n+%3D%5Cleft%28%5Calpha%2B%5Cbeta%5Cright%29_m" alt="\sum_{n=0}^{m}\binom{m}{n} \left(\alpha\right)_{m-n}\left(\beta\right)_n =\left(\alpha+\beta\right)_m"></p>
+<p>或者，利用 <img src="//www.zhihu.com/equation?tex=%5Cbinom%7B-%5Clambda%7D%7Bn%7D%3D%5Cleft%28-1%5Cright%29%5En%5Cfrac%7B%5Cleft%28%5Clambda%5Cright%29_n%7D%7Bn%21%7D" alt="\binom{-\lambda}{n}=\left(-1\right)^n\frac{\left(\lambda\right)_n}{n!}"> 将其写作</p>
+<p><img src="//www.zhihu.com/equation?tex=%5Csum_%7Bn%3D0%7D%5Em%5Cbinom%7B%5Calpha%7D%7Bm-n%7D%5Cbinom%7B%5Cbeta%7D%7Bn%7D%3D%5Cbinom%7B%5Calpha%2B%5Cbeta%7D%7Bm%7D" alt="\sum_{n=0}^m\binom{\alpha}{m-n}\binom{\beta}{n}=\binom{\alpha+\beta}{m}"></p>
+<p>这里主要的<strong>关键步骤</strong>是</p>
+<p><img src="//www.zhihu.com/equation?tex=%5Cleft%281-x%5Cright%29%5E%7B-%5Calpha%7D%5Cleft%281-x%5Cright%29%5E%7B-%5Cbeta%7D%3D%5Cleft%281-x%5Cright%29%5E%7B-%5Calpha-%5Cbeta%7D" alt="\left(1-x\right)^{-\alpha}\left(1-x\right)^{-\beta}=\left(1-x\right)^{-\alpha-\beta}"></p>
+<p>也就是说，<strong>等式的两端可以通过两种不同的方式进行计算（这是常用的技巧）</strong>。其他非常多组合数的等式都是用这种方法得到的。除此之外，许多有关多项式序列的等式也是通过这种方法得到的，例如 Bernoulli 多项式，Euler 多项式等等。</p>
+<p>来源：知乎 <a href="http://www.zhihu.com" target="_blank" rel="noopener">www.zhihu.com</a></p>
+<p>作者：<a href="http://www.zhihu.com/people/luo-min-jie?utm_campaign=rss&amp;utm_medium=rss&amp;utm_source=rss&amp;utm_content=author" target="_blank" rel="noopener">罗旻杰</a></p>
+<p>【知乎日报】千万用户的选择，做朋友圈里的新鲜事分享大牛。<br>        <a href="http://daily.zhihu.com?utm_source=rssyanwenzi&amp;utm_campaign=tuijian&amp;utm_medium=rssnormal" target="_blank" rel="noopener">点击下载</a></p>
+<p>此问题还有 <a href="http://www.zhihu.com/question/271885602/answer/364344441?utm_campaign=rss&amp;utm_medium=rss&amp;utm_source=rss&amp;utm_content=title" target="_blank" rel="noopener">2 个回答，查看全部。</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.zhangchg.cn/2018/04/14/生成函数的思想怎样应用于组合恒等式？/" data-id="cjfz4jmad001v8wxvjev4rvvm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/14/女员工离职后发现怀孕，能否恢复劳动关系？/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          女员工离职后发现怀孕，能否恢复劳动关系？
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/14/不存在暗物质的星系首次被发现，假设观测没有太大的误差，那么是否会危及到一部分天文学的理论？/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">不存在暗物质的星系首次被发现，假设观测没有太大的误差，那么是否会危及到一部分天文学的理论？</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT的那些事/">IT的那些事</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/产品市场/">产品市场</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐阅读/">推荐阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IT的那些事/" style="font-size: 15px;">IT的那些事</a> <a href="/tags/产品市场/" style="font-size: 20px;">产品市场</a> <a href="/tags/推荐阅读/" style="font-size: 10px;">推荐阅读</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/14/苏园别裁——被误读的狮子林/">苏园别裁——被误读的狮子林</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/14/女员工离职后发现怀孕，能否恢复劳动关系？/">女员工离职后发现怀孕，能否恢复劳动关系？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/14/生成函数的思想怎样应用于组合恒等式？/">生成函数的思想怎样应用于组合恒等式？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/14/不存在暗物质的星系首次被发现，假设观测没有太大的误差，那么是否会危及到一部分天文学的理论？/">不存在暗物质的星系首次被发现，假设观测没有太大的误差，那么是否会危及到一部分天文学的理论？</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 张晨刚<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>如何理解矩阵转置和求逆的可交换性？ | 张晨刚</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这是一个有趣的问题，但是要理解它不简单，甚至你会后悔干嘛要去理解什么几何。由于过程很长，我帮你理一下思路：矩阵（算子）对应于一个空间中的子空间（平面），取逆和取对偶（转置）变成一个空间上的简单变换。这两个变换是显然可交换的。 对了，矩阵的对偶是转置在复数域上的推广，一个矩阵的对偶是取转置后取复数共轭。一个实矩阵的对偶和转置是一样的。 要理解这个问题，需要了解什么叫Krein空间。我就不玩复杂的，尽">
+<meta name="keywords" content="张晨刚">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何理解矩阵转置和求逆的可交换性？">
+<meta property="og:url" content="http://blog.zhangchg.cn/2018/04/13/如何理解矩阵转置和求逆的可交换性？/index.html">
+<meta property="og:site_name" content="张晨刚">
+<meta property="og:description" content="这是一个有趣的问题，但是要理解它不简单，甚至你会后悔干嘛要去理解什么几何。由于过程很长，我帮你理一下思路：矩阵（算子）对应于一个空间中的子空间（平面），取逆和取对偶（转置）变成一个空间上的简单变换。这两个变换是显然可交换的。 对了，矩阵的对偶是转置在复数域上的推广，一个矩阵的对偶是取转置后取复数共轭。一个实矩阵的对偶和转置是一样的。 要理解这个问题，需要了解什么叫Krein空间。我就不玩复杂的，尽">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Cmathcal%7BH%7D%3A%3D%5Cmathbb%7BC%7D%5En">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=A">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Cmathbb%7BC%7D%5E%7B2n%7D%3D%5Cmathcal%7BH%7D%5Ctimes%5Cmathcal%7BH%7D%3D%5Cmathcal%7BH%7D%5E2">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=y%3DAx%5CLongleftrightarrow+%28x%2Cy%29%5E%7BT%7D%5Cin+A">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=A">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=A%5E%7B-1%7D%3A%3D%5C%7B%28y%2Cx%29%5ET%5Cin+%5Cmathcal%7BH%7D%5E2%3B+%28x%2Cy%29%5ET%5Cin+A%5C%7D">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Chat%7Bf%7D%3D%5Cbegin%7Bpmatrix%7Df%5C%5C+f%27%5Cend%7Bpmatrix%7D">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Chat%7Bf%7D%5E%7B-1%7D%3A%3D%5Cbegin%7Bpmatrix%7Df%27%5C%5C+f%5Cend%7Bpmatrix%7D">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Chat%7Bf%7D%5Cin+A">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Chat%7Bf%7D%5E%7B-1%7D%5Cin+A%5E%7B-1%7D">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Cmathcal%7BH%7D%5E2">
+<meta property="og:image" content="https://pic4.zhimg.com/v2-a75344b7593c51c0905a7f4fcc20f59b_b.png?rss">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%28f%2Cg%29_%7B%5Cmathcal%7BH%7D%7D%3Df%5Ccdot+%5Coverline%7Bg%7D">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-b096f9de906d8cf92462d026ef660a5a_b.png?rss">
+<meta property="og:image" content="https://pic1.zhimg.com/v2-795526d5c0ebd1aa86d655186b1168ec_b.png?rss">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%3C%5Calpha%2C+%5Cbeta%3E+%3D+%5Cbeta%5ET%5Calpha+%3D+%5Calpha%5ET%5Cbeta">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%3CA%5Calpha%2C+B%5Cbeta%3E+%3D+%3C%5Calpha%2C+%5Cbeta%3E">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%3CA%5Calpha%2C+%5Cbeta%3E+%3D+%3C%5Calpha%2C+A%5ET%5Cbeta%3E">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=B+%3D+%28A%5ET%29%5E%7B-1%7D">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%28A%5ET%29%5E%7B-1%7D">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%28A%5ET%29%5E%7B-1%7D">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%28%28%28A%5ET%29%5E%7B-1%7D%29%5ET%29%5E%7B-1%7D+%3D+A">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%28A%5ET%29%5E%7B-1%7D+%3D+%28A%5E%7B-1%7D%29%5ET">
+<meta property="og:updated_time" content="2018-04-14T07:58:41.416Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何理解矩阵转置和求逆的可交换性？">
+<meta name="twitter:description" content="这是一个有趣的问题，但是要理解它不简单，甚至你会后悔干嘛要去理解什么几何。由于过程很长，我帮你理一下思路：矩阵（算子）对应于一个空间中的子空间（平面），取逆和取对偶（转置）变成一个空间上的简单变换。这两个变换是显然可交换的。 对了，矩阵的对偶是转置在复数域上的推广，一个矩阵的对偶是取转置后取复数共轭。一个实矩阵的对偶和转置是一样的。 要理解这个问题，需要了解什么叫Krein空间。我就不玩复杂的，尽">
+<meta name="twitter:image" content="http://www.zhihu.com/equation?tex=%5Cmathcal%7BH%7D%3A%3D%5Cmathbb%7BC%7D%5En">
+  
+    <link rel="alternate" href="/atom.xml" title="张晨刚" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">张晨刚</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">张晨刚的个人博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhangchg.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-如何理解矩阵转置和求逆的可交换性？" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/13/如何理解矩阵转置和求逆的可交换性？/" class="article-date">
+  <time datetime="2018-04-13T08:31:06.000Z" itemprop="datePublished">2018-04-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      如何理解矩阵转置和求逆的可交换性？
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是一个有趣的问题，但是要理解它不简单，甚至你会后悔干嘛要去理解什么几何。<br>由于过程很长，我帮你理一下思路：<br><strong>矩阵（算子）对应于一个空间中的子空间（平面），取逆和取对偶（转置）变成一个空间上的简单变换。这两个变换是显然可交换的。</strong></p>
+<p><strong>对了，矩阵的对偶是转置在复数域上的推广，一个矩阵的对偶是取转置后取复数共轭。一个实矩阵的对偶和转置是一样的。
+</strong><br>要理解这个问题，需要了解什么叫Krein空间。我就不玩复杂的，尽量简单点。一个从<img src="//www.zhihu.com/equation?tex=%5Cmathcal%7BH%7D%3A%3D%5Cmathbb%7BC%7D%5En" alt="\mathcal{H}:=\mathbb{C}^n">映到自己的矩阵（线性映射）<img src="//www.zhihu.com/equation?tex=A" alt="A">可以看成是积空间<img src="//www.zhihu.com/equation?tex=%5Cmathbb%7BC%7D%5E%7B2n%7D%3D%5Cmathcal%7BH%7D%5Ctimes%5Cmathcal%7BH%7D%3D%5Cmathcal%7BH%7D%5E2" alt="\mathbb{C}^{2n}=\mathcal{H}\times\mathcal{H}=\mathcal{H}^2">中的一个线形闭子空间（也有人管这个叫“图”），就是说我们定义<br><img src="//www.zhihu.com/equation?tex=y%3DAx%5CLongleftrightarrow+%28x%2Cy%29%5E%7BT%7D%5Cin+A" alt="y=Ax\Longleftrightarrow (x,y)^{T}\in A">,<br>（右边的<img src="//www.zhihu.com/equation?tex=A" alt="A">不再是一个矩阵了，而是一个空间）。其实不难理解，一个矩阵可以看成是一个它的图像，也就是说一个平面,放过来，一个（足够好的）平面唯一的确定一个矩阵。</p>
+<p>于是我们可以把它的逆也看成一个子空间<img src="//www.zhihu.com/equation?tex=A%5E%7B-1%7D%3A%3D%5C%7B%28y%2Cx%29%5ET%5Cin+%5Cmathcal%7BH%7D%5E2%3B+%28x%2Cy%29%5ET%5Cin+A%5C%7D" alt="A^{-1}:=\{(y,x)^T\in \mathcal{H}^2; (x,y)^T\in A\}"><br>可以简单的证明，这个空间对应的矩阵刚好是矩阵的逆矩阵。</p>
+<p>我们可以引入一个向量逆运算：对于 一个向量<img src="//www.zhihu.com/equation?tex=%5Chat%7Bf%7D%3D%5Cbegin%7Bpmatrix%7Df%5C%5C+f%27%5Cend%7Bpmatrix%7D" alt="\hat{f}=\begin{pmatrix}f\\ f">, 定义它的逆<img src="//www.zhihu.com/equation?tex=%5Chat%7Bf%7D%5E%7B-1%7D%3A%3D%5Cbegin%7Bpmatrix%7Df%27%5C%5C+f%5Cend%7Bpmatrix%7D" alt="\hat{f}^{-1}:=\begin{pmatrix}f">. 于是<img src="//www.zhihu.com/equation?tex=%5Chat%7Bf%7D%5Cin+A" alt="\hat{f}\in A">当且仅当<img src="//www.zhihu.com/equation?tex=%5Chat%7Bf%7D%5E%7B-1%7D%5Cin+A%5E%7B-1%7D" alt="\hat{f}^{-1}\in A^{-1}">. </p>
+<p>对于空间<img src="//www.zhihu.com/equation?tex=%5Cmathcal%7BH%7D%5E2" alt="\mathcal{H}^2">,我们引入下面的Krein内积。</p>
+<p><img src="https://pic4.zhimg.com/v2-a75344b7593c51c0905a7f4fcc20f59b_b.png?rss" alt=""><br>这里：<img src="//www.zhihu.com/equation?tex=%28f%2Cg%29_%7B%5Cmathcal%7BH%7D%7D%3Df%5Ccdot+%5Coverline%7Bg%7D" alt="(f,g)_{\mathcal{H}}=f\cdot \overline{g}">.<br>于是，矩阵的对偶矩阵可以看成是这个空间在krein内积下的正交空间。</p>
+<p><img src="https://pic3.zhimg.com/v2-b096f9de906d8cf92462d026ef660a5a_b.png?rss" alt=""><br>（想一想为什么？），有了这些几何理解后，下面的结果就是简单。</p>
+<p><img src="https://pic1.zhimg.com/v2-795526d5c0ebd1aa86d655186b1168ec_b.png?rss" alt=""><br>我有时间再解释吧，这种思维可以推广到更一般的情况。<strong>这种把算子看成空间的思维是现在泛函分析的一般方法了，没什么好奇怪的</strong>。</p>
+<p>来源：知乎 <a href="http://www.zhihu.com" target="_blank" rel="noopener">www.zhihu.com</a></p>
+<p>作者：<a href="http://www.zhihu.com/people/dhchen?utm_campaign=rss&amp;utm_medium=rss&amp;utm_source=rss&amp;utm_content=author" target="_blank" rel="noopener">dhchen</a></p>
+<p>【知乎日报】千万用户的选择，做朋友圈里的新鲜事分享大牛。<br>        <a href="http://daily.zhihu.com?utm_source=rssyanwenzi&amp;utm_campaign=tuijian&amp;utm_medium=rssnormal" target="_blank" rel="noopener">点击下载</a></p>
+<p>此问题还有 <a href="http://www.zhihu.com/question/53736888/answer/141069184?utm_campaign=rss&amp;utm_medium=rss&amp;utm_source=rss&amp;utm_content=title" target="_blank" rel="noopener">7 个回答，查看全部。</a></p>
+<pre><code>延伸阅读：
+</code></pre><p><a href="http://www.zhihu.com/question/24095027?utm_campaign=rss&amp;utm_medium=rss&amp;utm_source=rss&amp;utm_content=title" target="_blank" rel="noopener">在进行线性回归时，为什么最小二乘法是最优方法？</a></p>
+<p><a href="http://www.zhihu.com/question/20962240?utm_campaign=rss&amp;utm_medium=rss&amp;utm_source=rss&amp;utm_content=title" target="_blank" rel="noopener">如何用简单易懂的例子解释隐马尔可夫模型？</a>从更几何一点的角度来说，有限维线性空间里的泛函可以看作是一维的线性映射，所以它有n-1维的核空间，也就是这个空间里的向量经过泛函作用之后得到了0。如果我们在这个线性空间上按照欧式几何规定内积</p>
+<p><img src="//www.zhihu.com/equation?tex=%3C%5Calpha%2C+%5Cbeta%3E+%3D+%5Cbeta%5ET%5Calpha+%3D+%5Calpha%5ET%5Cbeta" alt="&lt;\alpha, \beta&gt; = \beta^T\alpha = \alpha^T\beta"></p>
+<p>泛函的特征向量实际上就是这个核空间的正交补，或者用更几何的说法，它的特征向量就是这个n-1维超平面的法向量。注意同一个超平面的法向量可以有不同的方向（正负）以及长度，它们对应了线性相关的一组泛函。</p>
+<p>考虑一个n维到n维的线性映射A，它将一个n-1维超平面映射到了另一个超平面，这个新的超平面也有对应的法向量，一般来说它并不是原来的法向量经过A映射得到的结果，因为一般的线性映射并不会保证内积的不变性。那么新的法向量和原来的法向量究竟是什么关系呢？</p>
+<p>实质上就是要找到一个映射B，使得：</p>
+<p><img src="//www.zhihu.com/equation?tex=%3CA%5Calpha%2C+B%5Cbeta%3E+%3D+%3C%5Calpha%2C+%5Cbeta%3E" alt="&lt;A\alpha, B\beta&gt; = &lt;\alpha, \beta&gt;"></p>
+<p>对于内积来说，有</p>
+<p><img src="//www.zhihu.com/equation?tex=%3CA%5Calpha%2C+%5Cbeta%3E+%3D+%3C%5Calpha%2C+A%5ET%5Cbeta%3E" alt="&lt;A\alpha, \beta&gt; = &lt;\alpha, A^T\beta&gt;"></p>
+<p>因此显然有</p>
+<p><img src="//www.zhihu.com/equation?tex=B+%3D+%28A%5ET%29%5E%7B-1%7D" alt="B = (A^T)^{-1}"></p>
+<p>可见A与 <img src="//www.zhihu.com/equation?tex=%28A%5ET%29%5E%7B-1%7D" alt="(A^T)^{-1}"> 是一对保证内积不变的线性映射，将它们分别作用于两个向量，可以使得两个向量的内积保持不变。</p>
+<p>但是内积是对称的，那么如果我反过来，将 <img src="//www.zhihu.com/equation?tex=%28A%5ET%29%5E%7B-1%7D" alt="(A^T)^{-1}"> 作用到n-1维平面上，那法向量的线性映射就是A了，这说明取转置再取逆这个操作，重复执行两次，能得到原始的线性映射！于是我们就得到</p>
+<p><img src="//www.zhihu.com/equation?tex=%28%28%28A%5ET%29%5E%7B-1%7D%29%5ET%29%5E%7B-1%7D+%3D+A" alt="(((A^T)^{-1})^T)^{-1} = A"></p>
+<p>也就是</p>
+<p><img src="//www.zhihu.com/equation?tex=%28A%5ET%29%5E%7B-1%7D+%3D+%28A%5E%7B-1%7D%29%5ET" alt="(A^T)^{-1} = (A^{-1})^T"></p>
+<p>这是从保持内积不变的角度来讨论。从这里也可以看出，保内积的两个映射永远是一对，如果去掉取逆的过程，就是之前的对偶的概念了。</p>
+<p>来源：知乎 <a href="http://www.zhihu.com" target="_blank" rel="noopener">www.zhihu.com</a></p>
+<p>作者：<a href="http://www.zhihu.com/people/ling-jian-94?utm_campaign=rss&amp;utm_medium=rss&amp;utm_source=rss&amp;utm_content=author" target="_blank" rel="noopener">灵剑</a></p>
+<p>【知乎日报】千万用户的选择，做朋友圈里的新鲜事分享大牛。<br>        <a href="http://daily.zhihu.com?utm_source=rssyanwenzi&amp;utm_campaign=tuijian&amp;utm_medium=rssnormal" target="_blank" rel="noopener">点击下载</a></p>
+<p>此问题还有 <a href="http://www.zhihu.com/question/53736888/answer/363052047?utm_campaign=rss&amp;utm_medium=rss&amp;utm_source=rss&amp;utm_content=title" target="_blank" rel="noopener">7 个回答，查看全部。</a></p>
+<pre><code>延伸阅读：
+</code></pre><p><a href="http://www.zhihu.com/question/24095027?utm_campaign=rss&amp;utm_medium=rss&amp;utm_source=rss&amp;utm_content=title" target="_blank" rel="noopener">在进行线性回归时，为什么最小二乘法是最优方法？</a></p>
+<p><a href="http://www.zhihu.com/question/20962240?utm_campaign=rss&amp;utm_medium=rss&amp;utm_source=rss&amp;utm_content=title" target="_blank" rel="noopener">如何用简单易懂的例子解释隐马尔可夫模型？</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.zhangchg.cn/2018/04/13/如何理解矩阵转置和求逆的可交换性？/" data-id="cjfz4jm9s00168wxvx2vuq3y8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/13/男童在幼儿园烫成重伤，家长天价索赔是否构成敲诈勒索罪？/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          男童在幼儿园烫成重伤，家长天价索赔是否构成敲诈勒索罪？
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/13/如何理解《暴裂无声》的结局？/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">如何理解《暴裂无声》的结局？</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT的那些事/">IT的那些事</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/产品市场/">产品市场</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐阅读/">推荐阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IT的那些事/" style="font-size: 15px;">IT的那些事</a> <a href="/tags/产品市场/" style="font-size: 20px;">产品市场</a> <a href="/tags/推荐阅读/" style="font-size: 10px;">推荐阅读</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/14/苏园别裁——被误读的狮子林/">苏园别裁——被误读的狮子林</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/14/女员工离职后发现怀孕，能否恢复劳动关系？/">女员工离职后发现怀孕，能否恢复劳动关系？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/14/生成函数的思想怎样应用于组合恒等式？/">生成函数的思想怎样应用于组合恒等式？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/14/不存在暗物质的星系首次被发现，假设观测没有太大的误差，那么是否会危及到一部分天文学的理论？/">不存在暗物质的星系首次被发现，假设观测没有太大的误差，那么是否会危及到一部分天文学的理论？</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 张晨刚<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

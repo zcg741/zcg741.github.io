@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>三体运动没有解析解，那么自然界又是如何运行的呢？ | 张晨刚</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="三体问题没有能用显式表达的解，但是它有  的实解析解，这是由ODE的理论保证的，解的正则性很完美。 麻烦的地方在于所谓的混沌性。一般我们说一个动力系统是混沌的，如果同时满足： 1. 初值敏感性。两个在0时刻任意近的点都会在时间足够大后分离的足够远。 2. 拓扑传递性。有一条轨道在相空间里是稠密的。 3.周期轨道的集合在相空间里是稠密的。 在混沌系统里，数值模拟会在长时间后变的不准确，这是由系统本身">
+<meta name="keywords" content="张晨刚">
+<meta property="og:type" content="article">
+<meta property="og:title" content="三体运动没有解析解，那么自然界又是如何运行的呢？">
+<meta property="og:url" content="http://blog.zhangchg.cn/2018/04/12/三体运动没有解析解，那么自然界又是如何运行的呢？/index.html">
+<meta property="og:site_name" content="张晨刚">
+<meta property="og:description" content="三体问题没有能用显式表达的解，但是它有  的实解析解，这是由ODE的理论保证的，解的正则性很完美。 麻烦的地方在于所谓的混沌性。一般我们说一个动力系统是混沌的，如果同时满足： 1. 初值敏感性。两个在0时刻任意近的点都会在时间足够大后分离的足够远。 2. 拓扑传递性。有一条轨道在相空间里是稠密的。 3.周期轨道的集合在相空间里是稠密的。 在混沌系统里，数值模拟会在长时间后变的不准确，这是由系统本身">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=C%5E%5Comega">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=f%3A+I%5Crightarrow+I">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=I%3D%28-1%2C1%29">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=f%28x%29%3D1-ax%5E2">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=a%5Cin+%5Cmathbb%7BR%7D">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=x">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Cleft%5C%7Bx%2Cf%28x%29%5Ccdots%2C+f%5E%7B%5Ccirc+n%7D%28x%29%2C%5Ccdots%5Cright%5C%7D">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=f%5E%7B%5Ccirc+n%7D">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=n">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=a">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=x%5Cin+I">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Cmu">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=%5Cmu">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=f_a">
+<meta property="og:image" content="http://www.zhihu.com/equation?tex=f_a">
+<meta property="og:updated_time" content="2018-04-14T07:58:41.420Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="三体运动没有解析解，那么自然界又是如何运行的呢？">
+<meta name="twitter:description" content="三体问题没有能用显式表达的解，但是它有  的实解析解，这是由ODE的理论保证的，解的正则性很完美。 麻烦的地方在于所谓的混沌性。一般我们说一个动力系统是混沌的，如果同时满足： 1. 初值敏感性。两个在0时刻任意近的点都会在时间足够大后分离的足够远。 2. 拓扑传递性。有一条轨道在相空间里是稠密的。 3.周期轨道的集合在相空间里是稠密的。 在混沌系统里，数值模拟会在长时间后变的不准确，这是由系统本身">
+<meta name="twitter:image" content="http://www.zhihu.com/equation?tex=C%5E%5Comega">
+  
+    <link rel="alternate" href="/atom.xml" title="张晨刚" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">张晨刚</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">张晨刚的个人博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.zhangchg.cn"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-三体运动没有解析解，那么自然界又是如何运行的呢？" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/12/三体运动没有解析解，那么自然界又是如何运行的呢？/" class="article-date">
+  <time datetime="2018-04-12T14:00:09.000Z" itemprop="datePublished">2018-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      三体运动没有解析解，那么自然界又是如何运行的呢？
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>三体问题没有能用显式表达的解，但是它有 <img src="//www.zhihu.com/equation?tex=C%5E%5Comega" alt="C^\omega"> 的实解析解，这是由ODE的理论保证的，解的正则性很完美。</p>
+<p>麻烦的地方在于所谓的混沌性。一般我们说一个动力系统是混沌的，如果同时满足：</p>
+<p>1. 初值敏感性。两个在0时刻任意近的点都会在时间足够大后分离的足够远。</p>
+<p>2. 拓扑传递性。有一条轨道在相空间里是稠密的。</p>
+<p>3.周期轨道的集合在相空间里是稠密的。</p>
+<p>在混沌系统里，数值模拟会在长时间后变的不准确，这是由系统本身的性质决定的。三体问题，以及天气预报都属于混沌系统。注意，尽管我们没有显式解，数值模拟也会在长时间失效，我们依然可以定性地去分析这个解，这就是庞加莱的伟大创见。</p>
+<p>根据Etienne Ghys，我们可以把动力系统的发展分成三个阶段 :-)</p>
+<p>1. 牛顿时代：我们有一个ODE，我们的任务是找到它的(显式)解。</p>
+<p>2. 庞加莱时代：我们有一个ODE，我们的任务是对它的解说点什么。</p>
+<p>3. 托姆-斯梅尔时代(也就是当下)：我们没有ODE，但是要对它的解说点什么。-_-#</p>
+<p>解释一下最后一条。为什么说我们没有ODE？因为限于实验手段的误差，我们实际上得到的是一族参数下的ODE，我们不知道参数的准确值。这个时候我们就要对这一族ODE的解说点什么。</p>
+<p>……………………………………………………………………分割线…………………………………………………………………..</p>
+<p>更新一个托姆-斯梅尔风格的例子：</p>
+<p>考虑最简单的一维实动力系统： <img src="//www.zhihu.com/equation?tex=f%3A+I%5Crightarrow+I" alt="f: I\rightarrow I"> ，其中 <img src="//www.zhihu.com/equation?tex=I%3D%28-1%2C1%29" alt="I=(-1,1)"> ， <img src="//www.zhihu.com/equation?tex=f%28x%29%3D1-ax%5E2" alt="f(x)=1-ax^2"> ，其中 <img src="//www.zhihu.com/equation?tex=a%5Cin+%5Cmathbb%7BR%7D" alt="a\in \mathbb{R}"> 为参数。我们考虑以下的动力系统：一个点 <img src="//www.zhihu.com/equation?tex=x" alt="x"> 的轨道为： <img src="//www.zhihu.com/equation?tex=%5Cleft%5C%7Bx%2Cf%28x%29%5Ccdots%2C+f%5E%7B%5Ccirc+n%7D%28x%29%2C%5Ccdots%5Cright%5C%7D" alt="\left\{x,f(x)\cdots, f^{\circ n}(x),\cdots\right\}"> ，其中 <img src="//www.zhihu.com/equation?tex=f%5E%7B%5Ccirc+n%7D" alt="f^{\circ n}"> 为 <img src="//www.zhihu.com/equation?tex=n" alt="n"> 次迭代。我们有如下结果：</p>
+<p><strong>定理 (Avila-Lyubich) </strong></p>
+<p><strong>对于几乎所有的</strong> <img src="//www.zhihu.com/equation?tex=a" alt="a"><strong>(Lebesgue测度意义下), 我们有如下的dichotomy：</strong></p>
+<p><strong>(1) 几乎所有的</strong> <img src="//www.zhihu.com/equation?tex=x%5Cin+I" alt="x\in I"><strong>会趋向于一个attracting cycle（有限个点组成的周期轨道）</strong></p>
+<p><strong>或者</strong></p>
+<p><strong>（2）存在一个关于Lebesgue测度绝对连续的不变测度</strong> <img src="//www.zhihu.com/equation?tex=%5Cmu" alt="\mu"><strong>，几乎所有的点要么趋向于</strong> <img src="//www.zhihu.com/equation?tex=%5Cmu" alt="\mu"><strong>要么趋向于一个attracting cycle。</strong></p>
+<p>在上面的结果里，我们并没有对一个具体的 <img src="//www.zhihu.com/equation?tex=f_a" alt="f_a"> 说什么，但是我们对几乎所有的 <img src="//www.zhihu.com/equation?tex=f_a" alt="f_a"> 的动力系统作出了结论。</p>
+<p>来源：知乎 <a href="http://www.zhihu.com" target="_blank" rel="noopener">www.zhihu.com</a></p>
+<p>作者：<a href="http://www.zhihu.com/people/ji-zhu-chao?utm_campaign=rss&amp;utm_medium=rss&amp;utm_source=rss&amp;utm_content=author" target="_blank" rel="noopener">Zhuchao Ji</a></p>
+<p>【知乎日报】千万用户的选择，做朋友圈里的新鲜事分享大牛。<br>        <a href="http://daily.zhihu.com?utm_source=rssyanwenzi&amp;utm_campaign=tuijian&amp;utm_medium=rssnormal" target="_blank" rel="noopener">点击下载</a></p>
+<p>此问题还有 <a href="http://www.zhihu.com/question/271564277/answer/362435686?utm_campaign=rss&amp;utm_medium=rss&amp;utm_source=rss&amp;utm_content=title" target="_blank" rel="noopener">55 个回答，查看全部。</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.zhangchg.cn/2018/04/12/三体运动没有解析解，那么自然界又是如何运行的呢？/" data-id="cjfz4jm99000k8wxvrc2691bh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/12/享受穿梭在拳头里的愉悦-享受命中对手的快感-！谈谈ARMS拳套的命中机制。/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          享受穿梭在拳头里的愉悦~享受命中对手的快感~！谈谈ARMS拳套的命中机制。
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/12/如何评价何冰的演技？/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">如何评价何冰的演技？</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/杂谈/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT的那些事/">IT的那些事</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/产品市场/">产品市场</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐阅读/">推荐阅读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IT的那些事/" style="font-size: 15px;">IT的那些事</a> <a href="/tags/产品市场/" style="font-size: 20px;">产品市场</a> <a href="/tags/推荐阅读/" style="font-size: 10px;">推荐阅读</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/14/苏园别裁——被误读的狮子林/">苏园别裁——被误读的狮子林</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/14/女员工离职后发现怀孕，能否恢复劳动关系？/">女员工离职后发现怀孕，能否恢复劳动关系？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/14/生成函数的思想怎样应用于组合恒等式？/">生成函数的思想怎样应用于组合恒等式？</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/14/不存在暗物质的星系首次被发现，假设观测没有太大的误差，那么是否会危及到一部分天文学的理论？/">不存在暗物质的星系首次被发现，假设观测没有太大的误差，那么是否会危及到一部分天文学的理论？</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 张晨刚<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
